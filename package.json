@@ -1,0 +1,14 @@
+{
+  "name": "@local/content-protection-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./react/index.js",
+    "./styles.css": "./react/content-protection.css"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

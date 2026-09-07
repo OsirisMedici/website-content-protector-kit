@@ -1,0 +1,201 @@
+:root {
+  --cp-accent: #fbc02d;
+  --cp-background: rgba(2, 6, 23, 0.96);
+  --cp-text: #f8fafc;
+  --cp-muted: #94a3b8;
+}
+
+.cp-content-locked {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.cp-content-locked :is(input, textarea, [contenteditable="true"], .allow-select) {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  user-select: text !important;
+}
+
+.cp-content-locked :is(img, video, canvas, picture, svg) {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.cp-screen-protected {
+  filter: blur(50px) brightness(0.12) grayscale(90%) !important;
+  pointer-events: none !important;
+  transition: filter 50ms ease;
+}
+
+@media print {
+  html.cp-print-protected body {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+.cp-layer {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.cp-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 12px 18px;
+  color: var(--cp-text);
+  background: var(--cp-background);
+  border: 1px solid color-mix(in srgb, var(--cp-accent) 35%, transparent);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: cp-toast-in 180ms ease-out;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.cp-toast-icon,
+.cp-lock-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: var(--cp-accent);
+  background: color-mix(in srgb, var(--cp-accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cp-accent) 30%, transparent);
+}
+
+.cp-toast-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.cp-toast-icon svg {
+  width: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cp-shield {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 24px;
+  overflow: hidden;
+  color: var(--cp-text);
+  background: rgba(0, 0, 0, 0.96);
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cp-shield-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(460px, 100%);
+  padding: 32px;
+  background: var(--cp-background);
+  border: 1px solid color-mix(in srgb, var(--cp-accent) 32%, transparent);
+  border-radius: 24px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+}
+
+.cp-lock-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+}
+
+.cp-lock-icon svg {
+  width: 32px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cp-shield-card strong {
+  margin-bottom: 10px;
+  font-size: clamp(20px, 4vw, 28px);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cp-shield-card > span:nth-of-type(2) {
+  color: var(--cp-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.cp-resume {
+  margin-top: 24px;
+  padding: 10px 18px;
+  color: #111827 !important;
+  background: var(--cp-accent);
+  border-radius: 999px;
+  font-size: 12px !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cp-watermarks {
+  position: absolute;
+  inset: -15%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 52px;
+  align-content: center;
+  opacity: 0.1;
+  transform: rotate(-24deg) scale(1.15);
+  pointer-events: none;
+}
+
+.cp-watermarks span {
+  white-space: nowrap;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+@keyframes cp-toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-toast,
+  .cp-screen-protected {
+    animation: none;
+    transition: none;
+  }
+}
